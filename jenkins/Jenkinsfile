@@ -1,0 +1,49 @@
+pipeline {
+  agent any
+  environment {
+    REPO_URL = 'https://github.com/your-org/your-repo'
+    BRANCH = "${env.BRANCH_NAME ?: 'feature/demo'}"
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+    stage('Restore & Build') {
+      steps {
+        sh 'dotnet restore src/ExampleService/ExampleService.csproj'
+        sh 'dotnet build src/ExampleService/ExampleService.csproj --configuration Release'
+      }
+    }
+    stage('Unit Tests') {
+      steps {
+        sh 'dotnet test src/ExampleService/ExampleService.csproj --no-build --logger trx || true'
+      }
+    }
+    stage('Static Analysis') {
+      steps {
+        echo 'Run SAST tool here (e.g., SonarQube, Snyk)'
+      }
+    }
+    stage('Package') {
+      steps {
+        sh 'dotnet publish src/ExampleService/ExampleService.csproj -c Release -o out'
+        archiveArtifacts artifacts: 'src/ExampleService/out/**', fingerprint: true
+      }
+    }
+    stage('Deploy to Staging') {
+      when {
+        expression { return env.BRANCH_NAME && env.BRANCH_NAME.startsWith('feature/') }
+      }
+      steps {
+        echo 'Trigger deployment to staging via Cloud MCP / Terraform apply (placeholder)'
+        // sh './deploy.sh staging'
+      }
+    }
+  }
+  post {
+    success { echo 'Build succeeded' }
+    failure { echo 'Build failed' }
+  }
+}

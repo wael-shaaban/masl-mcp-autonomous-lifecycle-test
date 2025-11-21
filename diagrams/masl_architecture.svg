@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700">
+  <style>
+    .box { fill:#f8f9fa; stroke:#2b6cb0; stroke-width:2; rx:8; }
+    .title { font: bold 18px sans-serif; fill:#1a202c; }
+    .label { font: 14px sans-serif; fill:#2d3748; }
+  </style>
+  <rect x="40" y="40" width="1120" height="620" fill="#fff" stroke="#e2e8f0" rx="12"/>
+  <text x="80" y="80" class="title">MASL - High Level Architecture (Hybrid Cloud + Jenkins)</text>
+
+  <!-- Meeting -->
+  <rect x="80" y="110" width="220" height="90" class="box"/>
+  <text x="120" y="140" class="label">Meeting Recorder</text>
+  <text x="120" y="160" class="label">(Confluence MCP)</text>
+
+  <!-- Jira -->
+  <rect x="360" y="110" width="220" height="90" class="box"/>
+  <text x="400" y="140" class="label">Ticket Composer</text>
+  <text x="400" y="160" class="label">(Jira MCP)</text>
+
+  <!-- GitHub -->
+  <rect x="640" y="110" width="220" height="90" class="box"/>
+  <text x="680" y="140" class="label">Code Repo</text>
+  <text x="680" y="160" class="label">(GitHub MCP + Copilot)</text>
+
+  <!-- Jenkins -->
+  <rect x="920" y="110" width="220" height="90" class="box"/>
+  <text x="960" y="140" class="label">CI/CD</text>
+  <text x="960" y="160" class="label">(Jenkins)</text>
+
+  <!-- Cloud -->
+  <rect x="200" y="260" width="300" height="120" class="box"/>
+  <text x="240" y="300" class="label">Hybrid Cloud</text>
+  <text x="240" y="320" class="label">AWS / On-Prem / DO</text>
+
+  <!-- Monitoring -->
+  <rect x="560" y="260" width="300" height="120" class="box"/>
+  <text x="600" y="300" class="label">Observability</text>
+  <text x="600" y="320" class="label">Grafana / Prometheus / Logs</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#2b6cb0" />
+    </marker>
+  </defs>
+
+  <line x1="300" y1="155" x2="360" y2="155" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="580" y1="155" x2="640" y2="155" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="860" y1="155" x2="920" y2="155" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="750" y1="205" x2="750" y2="260" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="460" y1="205" x2="560" y2="260" stroke="#2b6cb0" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="320" y="190" class="label">Generate Tickets →</text>
+  <text x="660" y="190" class="label">Open PRs → CI/CD → Deploy</text>
+</svg>
